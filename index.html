@@ -1,0 +1,51 @@
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Subscription</title>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+<h1 class="text-center">Subscribe-us</h1>
+<form method="POST" id="my-form" class="gform" action="https://script.google.com/macros/s/AKfycbwrRcqbl2HWAmNllzZqGhMxAwAfLsdh4l5LL3oK5oH8O8AuAaXCGMTmIz0MNB-rvD8b/exec">
+<div class="form-group">
+<input type="text" name="message" class="form-control" id="message" placeholder="Enter your email id" required>
+</div>
+<button value="Send" type="submit" class="btn btn-primary">
+Subscribe
+</button>
+</form>
+</div>
+<div class = "container my-2" id="my-form-status"></div>
+
+<div class="container" id="my-form"></div>
+
+<script>
+var form = document.getElementById("my-form");
+async function handleSubmit(event) {
+event.preventDefault();
+var status = document.getElementById("my-form-status");
+var data = new FormData(event.target);
+fetch(event.target.action, {
+method: form.method,
+body: data,
+headers: {
+'Accept': 'application/json'
+}
+}).then(response => {
+status.innerHTML = "Success! Thanks for subscribing.";
+form.reset()
+}).catch(error => {
+status.innerHTML = "Oops! Something went wrong."
+});
+}
+form.addEventListener("submit", handleSubmit)
+</script>
+<!-- Bootstrap JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
